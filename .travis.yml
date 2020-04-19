@@ -19,6 +19,7 @@ before_install:
 before_script:
   - composer require php-coveralls/php-coveralls:^2.2.0
   - composer install -n
+  - composer migrate
 
 script:
   - vendor/bin/phpunit --coverage-clover clover.xml

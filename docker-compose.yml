@@ -47,6 +47,23 @@ services:
     volumes:
       - my-data:/var/lib/mysql
 
+  php-migrate:
+    build: ./docker/php7
+    container_name: migrate-container
+    links:
+      - mysql
+    environment:
+      - DB_HOST=mysql
+      - DB_NAME=filestorage
+      - DB_USER=root
+      - DB_PASS=
+    command: bash -c "cd /var/www/html && composer migrate"
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - testingnetwork
+
+
 networks:
   testingnetwork:
     external:
