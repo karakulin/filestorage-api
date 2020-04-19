@@ -4,20 +4,23 @@ declare(strict_types=1);
 
 namespace App\Controller\Base;
 
+use Pimple\Psr11\Container;
+use Slim\Psr7\Response;
+
 class BaseController
 {
-    const API_NAME = 'slim4-api-skeleton';
+    const API_NAME = 'filestorage-api';
 
-    const API_VERSION = '0.3.0';
+    const API_VERSION = '0.0.1';
 
     protected $container;
 
-    public function __construct($container)
+    public function __construct(Container $container)
     {
         $this->container = $container;
     }
 
-    public function getHelp($request, $response)
+    public function getHelp($request, Response $response)
     {
         $message = [
             'api' => self::API_NAME,
@@ -30,7 +33,7 @@ class BaseController
         return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
     }
 
-    public function getStatus($request, $response)
+    public function getStatus($request, Response $response)
     {
         $this->container->get('db');
         $status = [
