@@ -1,0 +1,31 @@
+### status api
+GET http://localhost:8081/status
+
+### create file
+POST http://localhost:8081/files
+Content-Type: application/json
+
+{"name": "filename.pdf","content": "filecontent..."}
+
+### update file
+PUT http://localhost:8081/files/1
+Content-Type: application/json
+
+{"name": "filename2.pdf","content": "filecontent2..."}
+### list files
+GET http://localhost:8081/files
+Accept: application/json
+
+### full info file(content in base64)
+GET http://localhost:8081/files/1/full
+Accept: application/json
+
+### download file
+GET http://localhost:8081/files/1
+Accept: application/json
+
+### delete file
+DELETE http://localhost:8081/files/1
+Accept: application/json
+
+###
