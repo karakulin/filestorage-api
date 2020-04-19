@@ -1,0 +1,25 @@
+language: php
+
+php:
+  - '7.4'
+
+services:
+  - mysql
+
+env:
+  global:
+    - DB_HOST=127.0.0.1
+    - DB_NAME=filestorage
+    - DB_USER=root
+    - DB_PASS=
+
+before_install:
+  - mysql -e 'CREATE DATABASE filestorage'
+
+before_script:
+  - composer require php-coveralls/php-coveralls:^2.2.0
+  - composer install -n
+
+script:
+  - vendor/bin/phpunit --coverage-clover clover.xml
+  - vendor/bin/php-coveralls --coverage_clover=clover.xml -v
