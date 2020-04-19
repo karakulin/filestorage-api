@@ -18,7 +18,8 @@
     "robmorgan/phinx": "dev-master",
     "slim/psr7": "^0.5.0",
     "slim/slim": "^4.4",
-    "vlucas/phpdotenv": "^2.4"
+    "vlucas/phpdotenv": "^2.4",
+    "ext-fileinfo": "*"
   },
   "require-dev": {
     "maurobonfietti/skel-api-slim-php-crud-generator": "dev-master",
@@ -44,6 +45,7 @@
     "up": "docker-compose up -d --build",
     "create-migration": "phinx create -c db/phinx-config.php",
     "migrate": "phinx migrate -c db/phinx-config.php",
+    "rollback": "phinx rollback -c db/phinx-config.php -t 0",
     "post-create-project-cmd": [
       "php -r \"copy('.env.example', '.env');\""
     ]

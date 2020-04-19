@@ -12,7 +12,7 @@ class FilesTable extends AbstractMigration
     {
         $this->table('files')
             ->addColumn('name', 'string')
-            ->addColumn('path', 'string')
+            ->addColumn('path', 'string', [ 'null' => true ])
             ->addColumn('real_location', 'string')
             ->addColumn('deleted', 'boolean', [ 'default' => false ])
             ->addTimestamps()

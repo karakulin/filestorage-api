@@ -9,6 +9,8 @@ services:
     volumes:
       - ./:/var/www/html
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - php-fpm
     networks:
       - testingnetwork
 
@@ -57,9 +59,11 @@ services:
       - DB_NAME=filestorage
       - DB_USER=root
       - DB_PASS=
-    command: bash -c "cd /var/www/html && composer migrate"
+    command: bash -c "sleep 5 && cd /var/www/html && composer migrate"
     volumes:
       - ./:/var/www/html
+    depends_on:
+      - mysql
     networks:
       - testingnetwork
 
